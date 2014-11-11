@@ -46,11 +46,12 @@ def main
   if !ARGV.empty?
     locations = ARGV
   else
-    locations = %w(Dewey Chinatown Seaport)
+    locations = %w(Chinatown Congress Dewey Seaport)
   end
 
   locations.each do |location|
     trucks = FoodTruck.at(location)
+    trucks.sort_by! { |truck| [truck.meal, truck.location, truck.name] }
     trucks.each do |truck|
       puts "#{truck.name} @ #{truck.location} for #{truck.meal} on #{truck.day}"
     end
