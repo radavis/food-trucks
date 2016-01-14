@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+  <head>
+    <title>Food Truck Schedule | City of Boston</title>
+  </head>
+  <body>
+
+    <table id="tableFoodTrucks">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>By Food Truck</th>
+          <th>By Day</th>
+          <th>By Time</th>
+          <th>By Neighborhood - Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="trFoodTrucks">
+          <td class="map"><a href="#maps" onClick='window.location.href=getMapLink("763952314839-2952528004069","Tenoch Mexican");'>Map</a></td>
+          <td class="com"><a href="http://www.tenochmexican.com">Tenoch Mexican</a></td>
+          <td class="dow">Thursday</td>
+          <td class="tod">Lunch</td>
+          <td class="loc"><script type="text/javascript">document.write(getMapInfo("763952314839-2952528004069","Tenoch Mexican"));</script>East, on Commonwealth Ave at Silber Way</td>
+        </tr>
+        <tr class="trFoodTrucks">
+          <td class="map"><a href="#maps" onClick='window.location.href=getMapLink("7764046-295509025","Chicken & Rice Guys");'>Map</a></td>
+          <td class="com"><a href="http://thechickenriceguys.com">Chicken & Rice Guys</a></td>
+          <td class="dow">Friday</td>
+          <td class="tod">Lunch</td>
+          <td class="loc"><script type="text/javascript">document.write(getMapInfo("7764046-295509025","Chicken & Rice Guys"));</script>Financial District, Pearl Street at Franklin</td>
+        </tr>
+        <tr class="trFoodTrucks">
+          <td class="map"><a href="#maps" onClick='window.location.href=getMapLink("0-","Stoked Wood Fired Pizza Co.");'>Map</a></td>
+          <td class="com"><a href="http://www.facebook.com/stokedwoodfiredpizza">Stoked Wood Fired Pizza Co.</a></td>
+          <td class="dow">Thursday</td>
+          <td class="tod">Lunch</td>
+          <td class="loc"><script type="text/javascript">document.write(getMapInfo("0-","Stoked Wood Fired Pizza Co."));</script>Clarendon St at Trinity Church</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

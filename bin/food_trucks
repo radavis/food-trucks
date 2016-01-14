@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/food_truck"
+
+FoodTruck.load
+trucks = FoodTruck.today
+trucks.sort_by! { |truck| [truck.meal, truck.location, truck.name] }
+puts trucks
