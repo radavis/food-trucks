@@ -15,7 +15,7 @@ RSpec.describe FoodTruck do
     name = "Tenoch"
     day = "Tuesday"
     meal = "Lunch"
-    location = "Back Bay - Stuart St. at Trinity Place"
+    location = "Stuart St. at Trinity Place"
     FoodTruck.new(name, day, meal, location)
   }
 
@@ -28,21 +28,10 @@ RSpec.describe FoodTruck do
     end
   end
 
-  describe "#neighborhood" do
-    it "should return the neighborhood when defined" do
-      expect(food_truck.neighborhood).to eq("Back Bay")
-    end
-
-    it "should return 'nil' if the neighborhood isn't defined" do
-      food_truck = FoodTruck.new("MHC", "Thursday", "Lunch", "Charlestown Navy Yard at Baxter Road")
-      expect(food_truck.neighborhood).to be_nil
-    end
-  end
-
   describe "to_s" do
     it "returns a string representation of the food truck" do
       expect(food_truck.to_s).to be_a(String)
-      expect(food_truck.to_s).to eq("Tenoch for Lunch in Back Bay")
+      expect(food_truck.to_s).to eq("Tenoch for Lunch @ Stuart St. at Trinity Place")
     end
   end
 
@@ -62,8 +51,9 @@ RSpec.describe FoodTruck do
 
       it "returns an array of FoodTruck objects" do
         FoodTruck.load
+        expect(FoodTruck.today).to be_an(Array)
         expect(FoodTruck.all).to_not be_empty
-        expect(FoodTruck.all.first).to be_a FoodTruck
+        expect(FoodTruck.all.first).to be_a(FoodTruck)
       end
     end
 

@@ -11,22 +11,8 @@ class FoodTruck
     @location = location
   end
 
-  def neighborhood
-    result = nil
-    if location.include?(" - ")
-      result, _ = location.split(" - ")
-    end
-    result
-  end
-
   def to_s
-    result = "#{name} for #{meal}"
-    if neighborhood
-      result += " in #{neighborhood}"
-    else
-      result += " @ #{location}"
-    end
-    result
+    "#{name} for #{meal} @ #{location}"
   end
 
   class << self
@@ -46,12 +32,13 @@ class FoodTruck
     end
 
     def load
-      doc.css('.trFoodTrucks').each do |row|
-        name = row.css('.com').text
-        day = row.css('.dow').text
-        meal = row.css('.tod').text
-        row.css('.loc script').remove
-        location = row.css('.loc').text
+      @@food_trucks = []
+      doc.css('tr.trFoodTrucks').each do |row|
+        name = row.css('td.com').text
+        day = row.css('td.dow').text
+        meal = row.css('td.tod').text
+        row.css('td.loc script').remove
+        location = row.css('td.loc').text
 
         @@food_trucks << FoodTruck.new(name, day, meal, location)
       end
