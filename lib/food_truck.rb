@@ -15,24 +15,33 @@ class FoodTruck
     "#{name} for #{meal} @ #{location}"
   end
 
+  def to_h
+    { name: name, meal: meal, location: location }
+  end
+
   class << self
     URL = "http://www.cityofboston.gov/foodtrucks/schedule-app-min.asp"
-    @@food_trucks = []
 
     def in(location, day = day_of_week)
-      @@food_trucks.select { |truck| truck.location.include?(location) && truck.day == day }
+      food_trucks.select { |truck| truck.location.include?(location) && truck.day == day }
     end
 
     def today
-      @@food_trucks.select { |truck| truck.day == day_of_week }
+      food_trucks.select { |truck| truck.day == day_of_week }
     end
 
     def all
-      @@food_trucks
+      food_trucks
     end
 
-    def load
-      @@food_trucks = []
+    private
+
+    def food_trucks
+      @@food_trucks ||= load_from_document
+    end
+
+    def load_from_document
+      result = []
       doc.css('tr.trFoodTrucks').each do |row|
         name = row.css('td.com').text
         day = row.css('td.dow').text
@@ -40,11 +49,12 @@ class FoodTruck
         row.css('td.loc script').remove
         location = row.css('td.loc').text
 
-        @@food_trucks << FoodTruck.new(name, day, meal, location)
+        result << FoodTruck.new(name, day, meal, location)
       end
+
+      result
     end
 
-    private
     def doc
       Nokogiri::HTML(open(URL).read)
     end

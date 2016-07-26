@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 
+require "table_print"
 require_relative "../lib/food_truck"
 
-FoodTruck.load
-trucks = FoodTruck.today
-trucks.sort_by! { |truck| [truck.meal, truck.location, truck.name] }
-puts trucks
+trucks = FoodTruck.today.sort_by! { |truck| [truck.meal, truck.location, truck.name] }
+tp(trucks, :meal, :name, { location: { width: 50 } })

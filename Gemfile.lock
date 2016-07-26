@@ -25,6 +25,7 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     slop (3.6.0)
+    table_print (1.5.6)
 
 PLATFORMS
   ruby
@@ -33,6 +34,7 @@ DEPENDENCIES
   nokogiri (= 1.6.6.2)
   pry
   rspec
+  table_print
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

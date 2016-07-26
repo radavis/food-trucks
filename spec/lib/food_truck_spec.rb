@@ -45,12 +45,7 @@ RSpec.describe FoodTruck do
     end
 
     describe ".all" do
-      it "returns an empty array before '.load' is called" do
-        expect(FoodTruck.all).to eq([])
-      end
-
       it "returns an array of FoodTruck objects" do
-        FoodTruck.load
         expect(FoodTruck.today).to be_an(Array)
         expect(FoodTruck.all).to_not be_empty
         expect(FoodTruck.all.first).to be_a(FoodTruck)
@@ -60,7 +55,6 @@ RSpec.describe FoodTruck do
     describe ".today" do
       it "returns food trucks that are on the streets, today" do
         allow(FoodTruck).to receive(:day_of_week) { "Friday" }
-        FoodTruck.load
         expect(FoodTruck.today).to_not be_empty
         expect(FoodTruck.today.length).to eq(1)
         expect(FoodTruck.today.first.name).to eq("Chicken & Rice Guys")
